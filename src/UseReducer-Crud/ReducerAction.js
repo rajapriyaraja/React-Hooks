@@ -9,7 +9,7 @@ export const postodo = (data)=>{
 export const fetchtodo = (data)=>{
     return{
     type : FETCH_TODO,
-    payload: data
+    payload:data
 
 };
 }

@@ -2,6 +2,6 @@ import React from 'react'
 
 export const ReducerTable = () => {
   return (
-    <div>ReducerTable</div>
+    <div>Reducer Table</div>
   )
 }

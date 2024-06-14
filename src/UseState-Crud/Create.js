@@ -27,7 +27,7 @@ export const Create = () => {
     const validationSchema = Yup.object({
         uname: Yup.string().required('name is required'),
         password: Yup.string().required('password is required'),
-        email: Yup.string().email('email must be valid').required('email is required'),
+        email: Yup.string().email('email must be valid').required('email  required'),
     });
     const formik = useFormik({
         initialValues: {

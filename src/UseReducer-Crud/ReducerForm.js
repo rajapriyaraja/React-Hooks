@@ -49,29 +49,35 @@ const ReducerForm = ({ dispatch }) => {
   }
 
   return (
-    <div className="container mt-4 d-flex justify-content-center ">
+    <div className="container mt-4 ">
       <form onSubmit={handleSubmit}>
         <h2>Register Form</h2>
-        <div className="form-group">
+        <div className='d-flex justify-content-center w-100'>
+        <div className="form-group  ">
           <select className="form-control" value={titleOption} onChange={(e) => setTitleOption(e.target.value)}>
             <option value="">Title</option>
             <option value="Mr.">Mr.</option>
             <option value="Miss.">Miss.</option>
             <option value="Mrs.">Mrs.</option>
           </select>
-        </div>
-        <div className="form-group">
+          </div>
+        <div className="form-group ms-2 w-25">
           <input className="form-control" type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
         </div>
-        <div className="form-group">
+       
+        <div className="form-group  ms-2">
           <input className="form-control" type="text" placeholder="Employee id" value={employeeid} onChange={(e) => setEmployeeid(e.target.value)} />
         </div>
-        <div className="form-group">
+        </div>
+        <div className='d-flex justify-content-center w-100 mt-4'>
+        <div className="form-group ms-2 w-25">
           <input className="form-control" type="date" placeholder="Date of Birth" value={date} onChange={(e) => setDate(e.target.value)} />
         </div>
-        <div className="form-group">
+        <div className="form-group ms-3 w-25">
           <input className="form-control" type="tel" placeholder="Mobile number" value={mobile} onChange={(e) => setMobile(e.target.value)} />
         </div>
+        </div>
+
         <div className="form-group">
           <input className="form-control" type="email" placeholder="Email address" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { postodo } from './ReducerAction';
-import { getUserData, postData } from '../UseState-Crud/MockAPI'; // Assuming you have a getData function to fetch individual data
+import { getUserData, putData } from '../UseState-Crud/MockAPI';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ReducerEdit = ({ dispatch }) => {
@@ -48,7 +48,7 @@ const ReducerEdit = ({ dispatch }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await postData(formData); // Post form data to API
+      const response = await putData(id, formData); // Use putData to update existing data
       dispatch(postodo(response)); // Dispatch action with response data
       navigate('/ReducerTable'); // Navigate back to the table view
     } catch (error) {
@@ -91,7 +91,7 @@ const ReducerEdit = ({ dispatch }) => {
             <option value="Mrs.">Mrs.</option>
           </select>
         </div>
-       
+
         <div className="form-group">
           <input
             className="form-control"
@@ -103,19 +103,19 @@ const ReducerEdit = ({ dispatch }) => {
           />
         </div>
         <div className="form-group">
-          <input className="form-control" type="text" placeholder="Employee id" value={formData.employeeid} onChange={handleChange} />
+          <input className="form-control" type="text" placeholder="Employee id" name="employeeid" value={formData.employeeid} onChange={handleChange} />
         </div>
         <div className="form-group">
-          <input className="form-control" type="date" placeholder="Date of Birth" value={formData.date} onChange={handleChange} />
+          <input className="form-control" type="date" placeholder="Date of Birth" name="date" value={formData.date} onChange={handleChange} />
         </div>
         <div className="form-group">
-          <input className="form-control" type="tel" placeholder="Mobile number" value={formData.mobile} onChange={handleChange} />
+          <input className="form-control" type="tel" placeholder="Mobile number" name="mobile" value={formData.mobile} onChange={handleChange} />
         </div>
         <div className="form-group">
-          <input className="form-control" type="email" placeholder="Email address" value={formData.email} onChange={handleChange} />
+          <input className="form-control" type="email" placeholder="Email address" name="email" value={formData.email} onChange={handleChange} />
         </div>
         <div className="form-group">
-          <select className="form-control" value={formData.gender} onChange={handleChange}>
+          <select className="form-control" name="gender" value={formData.gender} onChange={handleChange}>
             <option value="">Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
@@ -123,7 +123,7 @@ const ReducerEdit = ({ dispatch }) => {
           </select>
         </div>
         <div className="form-group">
-          <select className="form-control" value={formData.mstatus} onChange={handleChange}>
+          <select className="form-control" name="mstatus" value={formData.mstatus} onChange={handleChange}>
             <option value="">Marital Status</option>
             <option value="married">Married</option>
             <option value="unmarried">Unmarried</option>
@@ -132,23 +132,23 @@ const ReducerEdit = ({ dispatch }) => {
           </select>
         </div>
         <div className="form-group">
-          <input className="form-control" type="text" placeholder="Address" value={formData.address} onChange={handleChange} />
+          <input className="form-control" type="text" placeholder="Address" name="address" value={formData.address} onChange={handleChange} />
         </div>
         <div className="form-group">
-          <input className="form-control" type="text" placeholder="State" value={formData.state} onChange={handleChange} />
+          <input className="form-control" type="text" placeholder="State" name="state" value={formData.state} onChange={handleChange} />
         </div>
         <div className="form-group">
-          <select className="form-control" value={formData.country} onChange={handleChange}>
+          <select className="form-control" name="country" value={formData.country} onChange={handleChange}>
             <option value="">Country</option>
             <option value="india">India</option>
             <option value="others">Others</option>
           </select>
         </div>
         <div className="form-group">
-          <input className="form-control" type="text" placeholder="City" value={formData.city} onChange={handleChange} />
+          <input className="form-control" type="text" placeholder="City" name="city" value={formData.city} onChange={handleChange} />
         </div>
         <div className="form-group">
-          <input className="form-control" type="number" placeholder="Pin code" value={formData.pcode} onChange={handleChange} />
+          <input className="form-control" type="number" placeholder="Pin code" name="pcode" value={formData.pcode} onChange={handleChange} />
         </div>
         <div className="form-group">
           <button type="submit" className="btn btn-primary mr-2">
@@ -164,3 +164,4 @@ const ReducerEdit = ({ dispatch }) => {
 };
 
 export default ReducerEdit;
+

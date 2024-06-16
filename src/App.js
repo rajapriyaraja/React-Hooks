@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Reducer, { initialState } from './UseReducer-Crud/Reducer';
 import ReducerForm from './UseReducer-Crud/ReducerForm';
 import { ReducerTable } from './UseReducer-Crud/ReducerTable';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import './App.css';
 import ReducerEdit from './UseReducer-Crud/ReducerEdit';
 
 function App() {
@@ -21,3 +22,5 @@ function App() {
 }
 
 export default App;
+
+

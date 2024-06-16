@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import Link from react-router-dom for navigation
+import { Link, useNavigate } from 'react-router-dom';
 import Reducer from './Reducer';
 import { getData, onDelete } from '../MockApi/MockApi';
 import { fetchtodo, deletetodo } from './ReducerAction';
@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export const ReducerTable = () => {
   const initialState = { todos: [] };
   const [state, dispatch] = useReducer(Reducer, initialState);
-  const nav=useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -34,7 +34,7 @@ export const ReducerTable = () => {
   };
 
   const handleEdit = (id) => {
-   nav(`/ReducerEdit/${id}`)
+    navigate(`/ReducerEdit/${id}`);
   };
 
   return (
@@ -75,9 +75,7 @@ export const ReducerTable = () => {
               <td>{todo.city}</td>
               <td>{todo.pcode}</td>
               <td>
-                {/* Use Link for navigation to edit form */}
-                {/* <Link to={`/edit/${todo.id}`}className="btn btn-primary btn-sm">Edit</Link> */}
-                <button onClick={handleEdit}>Edit</button>
+                <button className="btn btn-primary btn-sm" onClick={() => handleEdit(todo.id)}>Edit</button>
                 <button className="btn btn-danger btn-sm ml-2" onClick={() => handleDelete(todo.id)}>Delete</button>
               </td>
             </tr>

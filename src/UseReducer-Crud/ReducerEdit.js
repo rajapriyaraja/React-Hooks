@@ -75,10 +75,13 @@ const ReducerEdit = ({ dispatch }) => {
   };
 
   return (
-    <div className="container mt-4 d-flex justify-content-center">
+    <div className="container mt-5  shadow-lg p-3 mb-5 bg-grey rounded w-50 pb-5 rounded">
       <form onSubmit={handleSubmit}>
-        <h2>Edit Form</h2>
-        <div className="form-group">
+      <div className="text-center pt-4 mb-5">
+          <h2>Edit Form</h2>
+        </div>
+        <div className="row mb-3">
+        <div className="col-2">
           <select
             className="form-control"
             name="titleOption"
@@ -92,7 +95,7 @@ const ReducerEdit = ({ dispatch }) => {
           </select>
         </div>
 
-        <div className="form-group">
+        <div className="col">
           <input
             className="form-control"
             type="text"
@@ -102,19 +105,23 @@ const ReducerEdit = ({ dispatch }) => {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        <div className="col">
           <input className="form-control" type="text" placeholder="Employee id" name="employeeid" value={formData.employeeid} onChange={handleChange} />
         </div>
-        <div className="form-group">
+        </div>
+        <div className="row mb-3 ">
+        <div className="col">
           <input className="form-control" type="date" placeholder="Date of Birth" name="date" value={formData.date} onChange={handleChange} />
         </div>
-        <div className="form-group">
+        <div className="col">
           <input className="form-control" type="tel" placeholder="Mobile number" name="mobile" value={formData.mobile} onChange={handleChange} />
         </div>
-        <div className="form-group">
+        </div>
+        <div className="row mb-3">
+        <div className="col">
           <input className="form-control" type="email" placeholder="Email address" name="email" value={formData.email} onChange={handleChange} />
         </div>
-        <div className="form-group">
+        <div className="col">
           <select className="form-control" name="gender" value={formData.gender} onChange={handleChange}>
             <option value="">Gender</option>
             <option value="male">Male</option>
@@ -122,7 +129,7 @@ const ReducerEdit = ({ dispatch }) => {
             <option value="other">Other</option>
           </select>
         </div>
-        <div className="form-group">
+        <div className="col">
           <select className="form-control" name="mstatus" value={formData.mstatus} onChange={handleChange}>
             <option value="">Marital Status</option>
             <option value="married">Married</option>
@@ -131,30 +138,35 @@ const ReducerEdit = ({ dispatch }) => {
             <option value="widowed">Widowed</option>
           </select>
         </div>
-        <div className="form-group">
+        </div>
+        <div className="row mb-3">
+        <div className="col">
           <input className="form-control" type="text" placeholder="Address" name="address" value={formData.address} onChange={handleChange} />
         </div>
-        <div className="form-group">
+        <div className="col">
           <input className="form-control" type="text" placeholder="State" name="state" value={formData.state} onChange={handleChange} />
         </div>
-        <div className="form-group">
+       </div>
+       <div className=' row mb-3'>
+        <div className="col">
           <select className="form-control" name="country" value={formData.country} onChange={handleChange}>
             <option value="">Country</option>
             <option value="india">India</option>
             <option value="others">Others</option>
           </select>
         </div>
-        <div className="form-group">
+        <div className="col">
           <input className="form-control" type="text" placeholder="City" name="city" value={formData.city} onChange={handleChange} />
         </div>
-        <div className="form-group">
+        <div className="col">
           <input className="form-control" type="number" placeholder="Pin code" name="pcode" value={formData.pcode} onChange={handleChange} />
         </div>
-        <div className="form-group">
-          <button type="submit" className="btn btn-primary mr-2">
+        </div>
+        <div className="col text-center mt-5 ">
+          <button type="submit" className="btn btn-primary  ">
             Submit
           </button>
-          <button type="button" className="btn btn-secondary" onClick={handleReset}>
+          <button type="button" className="btn btn-secondary ms-4" onClick={handleReset}>
             Reset
           </button>
         </div>
@@ -164,4 +176,3 @@ const ReducerEdit = ({ dispatch }) => {
 };
 
 export default ReducerEdit;
-

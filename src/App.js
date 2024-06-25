@@ -44,13 +44,15 @@
 import React, { useReducer } from 'react';
 import { Register } from './Authentication/RegisterPage/Register';
 import { Login } from './Authentication/LoginPage/Login';
+// src/index.js or src/App.js
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
 
   return (
-    // <Register/>
-    <Login/>
+    <Register/>
+    // <Login/>
   );
 }
 

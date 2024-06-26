@@ -46,12 +46,17 @@ import { Register } from './Authentication/RegisterPage/Register';
 import { Login } from './Authentication/LoginPage/Login';
 // src/index.js or src/App.js
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
 function App() {
-
   return (
-    <Register/>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/'element={<Register />}></Route>
+      <Route path='/Login'element={<Login />}></Route>
+    </Routes>
+    </BrowserRouter>
     // <Login/>
   );
 }

@@ -1,52 +1,62 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 import { Button, Form, Grid } from 'semantic-ui-react';
+import { useNavigate } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css'; // Ensure this import is present to apply Semantic UI CSS
+import { userRegisterMethod } from '../Api/RegisterApi';
+// import { registerApi } from '../Api/RegisterApi';
 
 export const Register = () => {
     const validationSchema = Yup.object({
-        uname: Yup.string().required('Name is required'),
+        userName: Yup.string().required('Name is required'),
         password: Yup.string().required('Password is required'),
         email: Yup.string().email('Email must be valid').required('Email is required'),
-        cpassword: Yup.string().required('Confirm password is required'),
-        mobile: Yup.string().required('Mobile is required'),
-        role: Yup.string().required('Role must be valid')
+        confirmPassword: Yup.string().required('Confirm password is required'),
+        mobileNo: Yup.string().required('Mobile is required'),
+        userRole: Yup.string().required('Role must be valid')
     });
 
+    const nav = useNavigate();
     const formik = useFormik({
         initialValues: {
-            uname: '',
+            userName: '',
             email: '',
             password: '',
-            cpassword: '',
-            mobile: '',
-            role: ''
+            confirmPassword: '',
+            mobileNo: '',
+            userRole: ''
         },
         validationSchema,
-        onSubmit: async (values, { resetForm }) => {
-            console.log(values);
-            resetForm();
+
+        onSubmit: async (values) => { 
+           const response = await userRegisterMethod(values);  
+           console.log(response);
+
+            nav('/Login'); 
         }
     });
 
     return (
         <div className="container mt-5">
+
             <Grid centered>
                 <Grid.Column width={6}>
                     <Form onSubmit={formik.handleSubmit}>
+                        <h1>Register Form</h1>
                         <Form.Field>
                             <label className='fs-5 mb-2'>Username</label>
                             <input
                                 type="text"
                                 placeholder="name"
-                                name="uname"
-                                autoComplete='name'required
-                                value={formik.values.uname}
+                                name="userName"
+                                autoComplete='name' required
+                                value={formik.values.userName}
                                 onBlur={formik.handleBlur}
                                 onChange={formik.handleChange} />
-                            {formik.touched.uname && formik.errors.uname ? (
-                                <div className="text-danger">{formik.errors.uname}</div>
+                            {formik.touched.userName && formik.errors.userName ? (
+                                <div className="text-danger">{formik.errors.userName}</div>
                             ) : null}
                         </Form.Field>
                         <Form.Field>
@@ -80,12 +90,12 @@ export const Register = () => {
                             <input
                                 type="password"
                                 placeholder="Confirm Password"
-                                name="cpassword"
-                                value={formik.values.cpassword}
+                                name="confirmPassword"
+                                value={formik.values.confirmPassword}
                                 onBlur={formik.handleBlur}
                                 onChange={formik.handleChange} />
-                            {formik.touched.cpassword && formik.errors.cpassword ? (
-                                <div className="text-danger">{formik.errors.cpassword}</div>
+                            {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+                                <div className="text-danger">{formik.errors.confirmPassword}</div>
                             ) : null}
                         </Form.Field>
                         <Form.Field>
@@ -93,25 +103,28 @@ export const Register = () => {
                             <input
                                 type="text"
                                 placeholder="Enter mobile number"
-                                name="mobile"
-                                value={formik.values.mobile}
+                                name="mobileNo"
+                                value={formik.values.mobileNo}
                                 onBlur={formik.handleBlur}
                                 onChange={formik.handleChange} />
-                            {formik.touched.mobile && formik.errors.mobile ? (
-                                <div className="text-danger">{formik.errors.mobile}</div>
+                            {formik.touched.mobileNo && formik.errors.mobileNo ? (
+                                <div className="text-danger">{formik.errors.mobileNo}</div>
                             ) : null}
                         </Form.Field>
                         <Form.Field>
                             <label className='fs-5 mb-2'>Role</label>
-                            <input
-                                type="text"
-                                placeholder="Enter role"
-                                name="role"
-                                value={formik.values.role}
+                             <select
+                                name="userRole"
+                                value={formik.values.userRole}
                                 onBlur={formik.handleBlur}
-                                onChange={formik.handleChange} />
-                            {formik.touched.role && formik.errors.role ? (
-                                <div className="text-danger">{formik.errors.role}</div>
+                                onChange={formik.handleChange}
+                            >
+                                <option value="" label="Select role" />
+                                <option value="ADMIN" label="Admin" />
+                                <option value="USER" label="User" />
+                            </select>
+                             {formik.touched.userRole && formik.errors.userRole ? (
+                                <div className="text-danger">{formik.errors.userRole}</div>
                             ) : null}
                         </Form.Field>
                         <Button type="submit" primary>Submit</Button>
@@ -121,3 +134,5 @@ export const Register = () => {
         </div>
     );
 };
+
+

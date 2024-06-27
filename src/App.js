@@ -47,6 +47,7 @@ import { Login } from './Authentication/LoginPage/Login';
 // src/index.js or src/App.js
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import  AdminTable from './Authentication/Table/AdminTable';
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
     <Routes>
       <Route path='/'element={<Register />}></Route>
       <Route path='/Login'element={<Login />}></Route>
+      <Route path='/Admin'element={< AdminTable />}></Route>
     </Routes>
     </BrowserRouter>
     // <Login/>

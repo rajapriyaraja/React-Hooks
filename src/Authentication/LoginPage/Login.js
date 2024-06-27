@@ -1,14 +1,15 @@
-
-
 import React, { useState } from 'react';
 import { logInApiMethod } from '../Api/LoginApi';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
   const [userLog, setUserLog] = useState({
     email: '',
     password: ''
   });
+
+  const nav = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,12 +22,19 @@ export const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await logInApiMethod(userLog);
-    localStorage.setItem('token', response.data.data.body.jwt);
+
+    if (response && response.data && response.data.data) {
+      localStorage.setItem('token', response.data.data.body.jwt);
+      localStorage.setItem('email', response.data.data.body.userEmail);
+      nav('/AdminTable');
+    } else {
+      console.error('Login failed. Response:', response);
+    }
   };
 
   return (
     <div className="container mt-5">
-      <form onSubmit={handleSubmit} className=" p-4 rounded">
+      <form onSubmit={handleSubmit} className="p-4 rounded">
         <h1 className="mb-4">Login</h1>
         <div className="form-group w-25">
           <label>Email</label>

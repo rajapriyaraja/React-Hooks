@@ -1,19 +1,17 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
 import { Button, Form, Grid } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
-import 'semantic-ui-css/semantic.min.css'; // Ensure this import is present to apply Semantic UI CSS
+import 'semantic-ui-css/semantic.min.css'; 
 import { userRegisterMethod } from '../Api/RegisterApi';
-// import { registerApi } from '../Api/RegisterApi';
 
 export const Register = () => {
     const validationSchema = Yup.object({
         userName: Yup.string().required('Name is required'),
-        password: Yup.string().required('Password is required'),
         email: Yup.string().email('Email must be valid').required('Email is required'),
-        confirmPassword: Yup.string().required('Confirm password is required'),
+        password: Yup.string().required('Password is required'),
+        confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('Confirm password is required'),
         mobileNo: Yup.string().required('Mobile is required'),
         userRole: Yup.string().required('Role must be valid')
     });
@@ -40,7 +38,6 @@ export const Register = () => {
 
     return (
         <div className="container mt-5">
-
             <Grid centered>
                 <Grid.Column width={6}>
                     <Form onSubmit={formik.handleSubmit}>
@@ -51,10 +48,12 @@ export const Register = () => {
                                 type="text"
                                 placeholder="name"
                                 name="userName"
-                                autoComplete='name' required
+                                autoComplete='name' 
+                                required
                                 value={formik.values.userName}
                                 onBlur={formik.handleBlur}
-                                onChange={formik.handleChange} />
+                                onChange={formik.handleChange} 
+                            />
                             {formik.touched.userName && formik.errors.userName ? (
                                 <div className="text-danger">{formik.errors.userName}</div>
                             ) : null}
@@ -67,7 +66,8 @@ export const Register = () => {
                                 name="email"
                                 value={formik.values.email}
                                 onBlur={formik.handleBlur}
-                                onChange={formik.handleChange} />
+                                onChange={formik.handleChange} 
+                            />
                             {formik.touched.email && formik.errors.email ? (
                                 <div className="text-danger">{formik.errors.email}</div>
                             ) : null}
@@ -80,7 +80,8 @@ export const Register = () => {
                                 name="password"
                                 value={formik.values.password}
                                 onBlur={formik.handleBlur}
-                                onChange={formik.handleChange} />
+                                onChange={formik.handleChange} 
+                            />
                             {formik.touched.password && formik.errors.password ? (
                                 <div className="text-danger">{formik.errors.password}</div>
                             ) : null}
@@ -93,7 +94,8 @@ export const Register = () => {
                                 name="confirmPassword"
                                 value={formik.values.confirmPassword}
                                 onBlur={formik.handleBlur}
-                                onChange={formik.handleChange} />
+                                onChange={formik.handleChange} 
+                            />
                             {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
                                 <div className="text-danger">{formik.errors.confirmPassword}</div>
                             ) : null}
@@ -106,14 +108,15 @@ export const Register = () => {
                                 name="mobileNo"
                                 value={formik.values.mobileNo}
                                 onBlur={formik.handleBlur}
-                                onChange={formik.handleChange} />
+                                onChange={formik.handleChange} 
+                            />
                             {formik.touched.mobileNo && formik.errors.mobileNo ? (
                                 <div className="text-danger">{formik.errors.mobileNo}</div>
                             ) : null}
                         </Form.Field>
                         <Form.Field>
                             <label className='fs-5 mb-2'>Role</label>
-                             <select
+                            <select
                                 name="userRole"
                                 value={formik.values.userRole}
                                 onBlur={formik.handleBlur}
@@ -123,7 +126,7 @@ export const Register = () => {
                                 <option value="ADMIN" label="Admin" />
                                 <option value="USER" label="User" />
                             </select>
-                             {formik.touched.userRole && formik.errors.userRole ? (
+                            {formik.touched.userRole && formik.errors.userRole ? (
                                 <div className="text-danger">{formik.errors.userRole}</div>
                             ) : null}
                         </Form.Field>
@@ -134,5 +137,3 @@ export const Register = () => {
         </div>
     );
 };
-
-

@@ -44,10 +44,10 @@
 import React, { useReducer } from 'react';
 import { Register } from './Authentication/RegisterPage/Register';
 import { Login } from './Authentication/LoginPage/Login';
-// src/index.js or src/App.js
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import  AdminTable from './Authentication/Table/AdminTable';
+import { UserTable } from './Authentication/Table/UserTable';
 
 
 function App() {
@@ -56,7 +56,8 @@ function App() {
     <Routes>
       <Route path='/'element={<Register />}></Route>
       <Route path='/Login'element={<Login />}></Route>
-      <Route path='/Admin'element={< AdminTable />}></Route>
+      <Route path='/Usertable'element={<UserTable />}></Route>
+      {/* <Route path='/Admin'element={< AdminTable />}></Route> */}
     </Routes>
     </BrowserRouter>
     // <Login/>

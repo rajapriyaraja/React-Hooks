@@ -26,7 +26,7 @@ export const Login = () => {
     if (response && response.data && response.data.data) {
       localStorage.setItem('token', response.data.data.body.jwt);
       localStorage.setItem('email', response.data.data.body.userEmail);
-      nav('/AdminTable');
+      nav('/UserTable');
     } else {
       console.error('Login failed. Response:', response);
     }

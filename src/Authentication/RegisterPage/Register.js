@@ -1,10 +1,12 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { userRegisterMethod } from '../Api/RegisterApi';
 import { Button, Form, Grid } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
-import 'semantic-ui-css/semantic.min.css'; 
-import { userRegisterMethod } from '../Api/RegisterApi';
+import 'semantic-ui-css/semantic.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Register.css'; 
 
 export const Register = () => {
     const validationSchema = Yup.object({
@@ -28,95 +30,104 @@ export const Register = () => {
         },
         validationSchema,
 
-        onSubmit: async (values) => { 
-           const response = await userRegisterMethod(values);  
-           console.log(response);
-
-            nav('/Login'); 
+        onSubmit: async (values) => {
+            const response = await userRegisterMethod(values);
+            console.log(response);
+            nav('/Login');
         }
     });
 
     return (
-        <div className="container mt-5">
-            <Grid centered>
-                <Grid.Column width={6}>
-                    <Form onSubmit={formik.handleSubmit}>
-                        <h1>Register Form</h1>
-                        <Form.Field>
-                            <label className='fs-5 mb-2'>Username</label>
+        <div className="container mt-5 d-flex justify-content-center">
+            <div className="register-form p-4 mt-5 shadow-lg">
+                <h2 className="text-center mb-4">Register Form</h2>
+                <form  onSubmit={formik.handleSubmit}>
+                    <div className="row mb-3 ">
+                        <div className="col-md-6">
+                            <label className="form-label">Username</label>
                             <input
                                 type="text"
+                                className="form-control"
                                 placeholder="name"
                                 name="userName"
-                                autoComplete='name' 
+                                autoComplete="name"
                                 required
                                 value={formik.values.userName}
                                 onBlur={formik.handleBlur}
-                                onChange={formik.handleChange} 
+                                onChange={formik.handleChange}
                             />
                             {formik.touched.userName && formik.errors.userName ? (
                                 <div className="text-danger">{formik.errors.userName}</div>
                             ) : null}
-                        </Form.Field>
-                        <Form.Field>
-                            <label className='fs-5 mb-2'>Email</label>
+                        </div>
+                        <div className="col-md-6">
+                            <label className="form-label">Email</label>
                             <input
                                 type="email"
+                                className="form-control"
                                 placeholder="email"
                                 name="email"
                                 value={formik.values.email}
                                 onBlur={formik.handleBlur}
-                                onChange={formik.handleChange} 
+                                onChange={formik.handleChange}
                             />
                             {formik.touched.email && formik.errors.email ? (
                                 <div className="text-danger">{formik.errors.email}</div>
                             ) : null}
-                        </Form.Field>
-                        <Form.Field>
-                            <label className='fs-5 mb-2'>Password</label>
+                        </div>
+                    </div>
+                    <div className="row mb-3">
+                        <div className="col-md-6">
+                            <label className="form-label">Password</label>
                             <input
                                 type="password"
+                                className="form-control"
                                 placeholder="password"
                                 name="password"
                                 value={formik.values.password}
                                 onBlur={formik.handleBlur}
-                                onChange={formik.handleChange} 
+                                onChange={formik.handleChange}
                             />
                             {formik.touched.password && formik.errors.password ? (
                                 <div className="text-danger">{formik.errors.password}</div>
                             ) : null}
-                        </Form.Field>
-                        <Form.Field>
-                            <label className='fs-5 mb-2'>Confirm Password</label>
+                        </div>
+                        <div className="col-md-6">
+                            <label className="form-label">Confirm Password</label>
                             <input
                                 type="password"
+                                className="form-control"
                                 placeholder="Confirm Password"
                                 name="confirmPassword"
                                 value={formik.values.confirmPassword}
                                 onBlur={formik.handleBlur}
-                                onChange={formik.handleChange} 
+                                onChange={formik.handleChange}
                             />
                             {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
                                 <div className="text-danger">{formik.errors.confirmPassword}</div>
                             ) : null}
-                        </Form.Field>
-                        <Form.Field>
-                            <label className='fs-5 mb-2'>Mobile</label>
+                        </div>
+                    </div>
+                    <div className="row mb-3">
+                        <div className="col-md-6">
+                            <label className="form-label">Mobile</label>
                             <input
                                 type="text"
+                                className="form-control"
                                 placeholder="Enter mobile number"
                                 name="mobileNo"
                                 value={formik.values.mobileNo}
                                 onBlur={formik.handleBlur}
-                                onChange={formik.handleChange} 
+                                onChange={formik.handleChange}
                             />
                             {formik.touched.mobileNo && formik.errors.mobileNo ? (
                                 <div className="text-danger">{formik.errors.mobileNo}</div>
                             ) : null}
-                        </Form.Field>
-                        <Form.Field>
-                            <label className='fs-5 mb-2'>Role</label>
+                        </div>
+                        <div className="col-md-6">
+                            <label className="form-label">Role</label>
                             <select
+                                className="form-select"
                                 name="userRole"
                                 value={formik.values.userRole}
                                 onBlur={formik.handleBlur}
@@ -129,11 +140,13 @@ export const Register = () => {
                             {formik.touched.userRole && formik.errors.userRole ? (
                                 <div className="text-danger">{formik.errors.userRole}</div>
                             ) : null}
-                        </Form.Field>
-                        <Button type="submit" primary>Submit</Button>
-                    </Form>
-                </Grid.Column>
-            </Grid>
+                        </div>
+                    </div>
+                    <div className="d-grid justify-content-end mt-4 gap-2">
+                        <Button type="submit" primary className="btn btn-primary">Submit</Button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };

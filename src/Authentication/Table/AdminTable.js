@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
- const AdminTable = () => {
-    const [users, setUsers] = useState([]);
-    const [error, setError] = useState(null);
-    
+export const AdminTable = () => {
+  const [users, setUsers] = useState([]);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     const fetchUsers = async () => {
       const token = localStorage.getItem('token');
@@ -33,27 +34,29 @@ import axios from 'axios';
 
   if (error) {
     return (
-      <div>
-        <p>Error: {error}</p>
+      <div className="container mt-5">
+        <div className="alert alert-danger" role="alert">
+          Error: {error}
+        </div>
       </div>
     );
   }
 
   return (
-    <>
-    <div>
-    <div>AdminTable</div>
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Mobile No</th>
-            <th>Role</th>
-        </tr>
-        </thead>
-        <tbody>
-        {users && users.map(user => (
+    <div className="container  mt-5">
+      <h1 className="mb-5 text-secondary text-center">Admin Table</h1>
+      <div className="table-responsive">
+        <table className="table table-striped table-bordered">
+          <thead className="thead-dark">
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Mobile No</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users && users.map(user => (
               <tr key={user.userId}>
                 <td>{user.userName}</td>
                 <td>{user.email}</td>
@@ -61,10 +64,9 @@ import axios from 'axios';
                 <td>{user.status}</td>
               </tr>
             ))}
-        </tbody>
-    </table>
+          </tbody>
+        </table>
+      </div>
     </div>
-    </>
-  )
-}
-export  default AdminTable;
+  );
+};

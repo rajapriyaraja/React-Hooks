@@ -42,19 +42,20 @@ export const UserTable = () => {
 
     useEffect(() => {
         fetchUser(email, token);
+
     }, []);
 
     console.log(user);
 
     return (
-        <div className="container">
-            <table className="table table-striped table-bordered mt-4">
+        <div className="container mt-4 pt-5">
+            <table className="table table-striped table-bordered mt-5">
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Mobile No</th>
-                        <th>Password</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,3 +73,4 @@ export const UserTable = () => {
         </div>
     );
 };
+

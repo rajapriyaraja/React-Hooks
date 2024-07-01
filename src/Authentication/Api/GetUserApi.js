@@ -10,6 +10,7 @@ export const  GetUserApi=async(payload,token) => {
             },
         });
         return response.data;
+       
     }catch(error){
         console.error(error);
     }

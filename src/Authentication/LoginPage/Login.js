@@ -8,7 +8,7 @@ export const Login = () => {
     email: '',
     password: ''
   });
-
+  const [message, setMessage] = useState('');
   const nav = useNavigate();
 
   const handleChange = (e) => {
@@ -21,21 +21,36 @@ export const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await logInApiMethod(userLog);
+    try {
+      const response = await logInApiMethod(userLog);
 
-    if (response && response.data && response.data.data) {
-      localStorage.setItem('token', response.data.data.body.jwt);
-      localStorage.setItem('email', response.data.data.body.userEmail);
-      nav('/UserTable');
-    } else {
-      console.error('Login failed. Response:', response);
+      if (response && response.data && response.data.data) {
+        localStorage.setItem('token', response.data.data.body.jwt);
+        localStorage.setItem('email', response.data.data.body.userEmail); 
+
+        
+        if (response.data.data.body.role === "USER") {
+          nav("/usertable");
+        } else if (response.data.data.body.role === "ADMIN") {
+          nav("/admintable");
+        } else {
+          setMessage("Unexpected user role");
+          console.error("Unexpected user role", response.data.data.body.role);
+        }
+      } else {
+        setMessage("User not found or invalid response");
+        console.error("Unexpected response structure", response.data);
+      }
+    } catch (error) {
+      setMessage("Error logging in");
+      console.error("There was an error!", error);
     }
   };
 
   return (
     <div className="container mt-5">
       <form onSubmit={handleSubmit} className="p-4 rounded">
-        <h1 className="mb-4">Login</h1>
+        <h1 className="mb-4 border-none">Login</h1>
         <div className="form-group w-25">
           <label>Email</label>
           <input
@@ -62,6 +77,7 @@ export const Login = () => {
         </div>
         <button type="submit" className="btn btn-primary mt-3">Login</button>
       </form>
+      {message && <div className="alert alert-danger mt-3">{message}</div>}
     </div>
   );
 };

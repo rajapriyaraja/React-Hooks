@@ -46,7 +46,7 @@ import { Register } from './Authentication/RegisterPage/Register';
 import { Login } from './Authentication/LoginPage/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import  AdminTable from './Authentication/Table/AdminTable';
+import  {AdminTable} from './Authentication/Table/AdminTable';
 import { UserTable } from './Authentication/Table/UserTable';
 
 
@@ -57,7 +57,7 @@ function App() {
       <Route path='/'element={<Register />}></Route>
       <Route path='/Login'element={<Login />}></Route>
       <Route path='/Usertable'element={<UserTable />}></Route>
-      {/* <Route path='/Admin'element={< AdminTable />}></Route> */}
+      <Route path='/Admintable'element={< AdminTable />}></Route>
     </Routes>
     </BrowserRouter>
     // <Login/>

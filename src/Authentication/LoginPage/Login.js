@@ -28,7 +28,6 @@ export const Login = () => {
         localStorage.setItem('token', response.data.data.body.jwt);
         localStorage.setItem('email', response.data.data.body.userEmail); 
 
-        
         if (response.data.data.body.role === "USER") {
           nav("/usertable");
         } else if (response.data.data.body.role === "ADMIN") {
@@ -48,36 +47,46 @@ export const Login = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <form onSubmit={handleSubmit} className="p-4 rounded">
-        <h1 className="mb-4 border-none">Login</h1>
-        <div className="form-group w-25">
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            value={userLog.email}
-            placeholder="Enter your email"
-            onChange={handleChange}
-            className="form-control"
-            required
-          />
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-12 col-md-8 col-lg-6 col-xl-4">
+          <div className="shadow-lg mt-5">
+            <form onSubmit={handleSubmit} className="p-4 rounded">
+              <h2 className="mb-4 text-center">Login</h2>
+              <div className="form-group">
+                <label>Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={userLog.email}
+                  placeholder="Enter your email"
+                  onChange={handleChange}
+                  className="form-control mt-2"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label className="mt-2">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  value={userLog.password}
+                  placeholder="Enter your password"
+                  onChange={handleChange}
+                  className="form-control mt-1"
+                  required
+                />
+              </div>
+              <button type="submit" className="btn btn-primary mt-4 w-100">Login</button>
+              <span className="d-flex justify-content-center mt-2">(or)</span>
+              <div className="mt-2">
+                <p>If you don't have an account, please <a href='http://localhost:3000/'>Sign Up...</a></p>
+              </div>
+            </form>
+            {message && <div className="alert alert-danger mt-3">{message}</div>}
+          </div>
         </div>
-        <div className="form-group w-25">
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={userLog.password}
-            placeholder="Enter your password"
-            onChange={handleChange}
-            className="form-control"
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary mt-3">Login</button>
-      </form>
-      {message && <div className="alert alert-danger mt-3">{message}</div>}
+      </div>
     </div>
   );
 };

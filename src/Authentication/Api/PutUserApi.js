@@ -13,5 +13,4 @@ export const  PutUserApi=async(payload,token) => {
     }catch(error){
         console.error(error);
     }
-
 }

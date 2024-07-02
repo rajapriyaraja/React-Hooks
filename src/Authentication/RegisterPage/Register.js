@@ -35,16 +35,16 @@ export const Register = () => {
     });
 
     return (
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center mt-5">
             <div className="register-form p-4  mt-4 col-lg-4 shadow-lg border">
                 <h2 className="text-center ">Register Form</h2>
                 <form onSubmit={formik.handleSubmit}>
-                    <div className="">
-                        <label className="form-label">Username</label>
+                    <div className="mt-4">
+                       
                         <input
                             type="text"
-                            className="form-control"
-                            placeholder="name"
+                            className="form-control  rounded-9"
+                            placeholder="Name"
                             name="userName"
                             autoComplete="name"
                             required
@@ -56,12 +56,12 @@ export const Register = () => {
                             <div className="text-danger">{formik.errors.userName}</div>
                         ) : null}
                     </div>
-                    <div className="">
-                        <label className="form-label">Email</label>
+                    <div className="mt-3">
+                      
                         <input
                             type="email"
-                            className="form-control"
-                            placeholder="email"
+                            className="form-control rounded-9"
+                            placeholder="Email"
                             name="email"
                             value={formik.values.email}
                             onBlur={formik.handleBlur}
@@ -71,12 +71,12 @@ export const Register = () => {
                             <div className="text-danger">{formik.errors.email}</div>
                         ) : null}
                     </div>
-                    <div className="">
-                        <label className="form-label">Password</label>
+                    <div className="mt-3">
+                      
                         <input
                             type="password"
-                            className="form-control"
-                            placeholder="password"
+                            className="form-control rounded-9"
+                            placeholder="Password"
                             name="password"
                             value={formik.values.password}
                             onBlur={formik.handleBlur}
@@ -86,11 +86,11 @@ export const Register = () => {
                             <div className="text-danger">{formik.errors.password}</div>
                         ) : null}
                     </div>
-                    <div className="">
-                        <label className="form-label">Confirm Password</label>
+                    <div className="mt-3">
+                      
                         <input
                             type="password"
-                            className="form-control"
+                            className="form-control rounded-9"
                             placeholder="Confirm Password"
                             name="confirmPassword"
                             value={formik.values.confirmPassword}
@@ -101,12 +101,12 @@ export const Register = () => {
                             <div className="text-danger">{formik.errors.confirmPassword}</div>
                         ) : null}
                     </div>
-                    <div className="">
-                        <label className="form-label">Mobile</label>
+                    <div className="mt-3">
+                        
                         <input
                             type="text"
-                            className="form-control"
-                            placeholder="Enter mobile number"
+                            className="form-control rounded-9"
+                            placeholder="Mobile Number"
                             name="mobileNo"
                             value={formik.values.mobileNo}
                             onBlur={formik.handleBlur}
@@ -116,10 +116,10 @@ export const Register = () => {
                             <div className="text-danger">{formik.errors.mobileNo}</div>
                         ) : null}
                     </div>
-                    <div className="">
-                        <label className="form-label">Role</label>
+                    <div className="mt-3">
+                        
                         <select
-                            className="form-select"
+                            className="form-select rounded-9"
                             name="userRole"
                             value={formik.values.userRole}
                             onBlur={formik.handleBlur}
@@ -135,6 +135,9 @@ export const Register = () => {
                     </div>
                     <div className="d-grid mt-3">
                         <button type="submit" className="btn btn-primary">Submit</button>
+                    </div>
+                    <div className='mt-3 text-center'>
+                        <p>If you have an account please <a href='http://localhost:3000/Login'>Log In</a></p>
                     </div>
                 </form>
             </div>

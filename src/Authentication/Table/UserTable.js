@@ -1,8 +1,6 @@
-
-
 import React, { useEffect, useState } from 'react';
 import { GetUserApi } from '../Api/GetUserApi';
-import { PutUserApi } from '../Api/PutUserApi';
+// import { PutUserApi } from '../Api/PutUserApi';
 import { DelUserApi } from '../Api/DelUserApi';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -115,50 +113,69 @@ export const UserTable = () => {
         }
     };
 
- 
-
     return (
         <>
             {edit ? (
-                <form onSubmit={handleUpdate}>
-                    <label>Name</label>
-                    <input 
-                        name="userName"
-                        value={formValues.userName}
-                        onChange={handleChange}
-                    />
-                    <label>Email</label>
-                    <input
-                        name="email"
-                        value={formValues.email}
-                        onChange={handleChange}
-                    />
-                    <label>Mobile No</label>
-                    <input
-                        name="mobileNo"
-                        value={formValues.mobileNo}
-                        onChange={handleChange}
-                    />
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={formValues.password}
-                        onChange={handleChange}
-                    />
-                    <label>Confirm Password</label>
-                    <input
-                        type="password"
-                        name="confirmPassword"
-                        value={formValues.confirmPassword}
-                        onChange={handleChange}
-                    />
-                    <button type="submit">Update</button>
-                </form>
+   <div className="d-flex justify-content-center ">
+   <form onSubmit={handleUpdate} className="border p-5 mt-5 bg-light  ">
+     <div className="mb-2">
+       <label className="form-label">Name</label>
+       <input
+         name="userName"
+         value={formValues.userName}
+         onChange={handleChange}
+         className="form-control"
+       />
+     </div>
+     <div className="mb-2">
+       <label className="form-label">Email</label>
+       <input
+         id="email"
+         name="email"
+         value={formValues.email}
+         onChange={handleChange}
+         className="form-control"
+       />
+     </div>
+     <div className="mb-2">
+       <label className="form-label">Mobile No</label>
+       <input
+         id="mobileNo"
+         name="mobileNo"
+         value={formValues.mobileNo}
+         onChange={handleChange}
+         className="form-control"
+       />
+     </div>
+     <div className="mb-2">
+       <label className="form-label">Password</label>
+       <input
+         id="password"
+         type="password"
+         name="password"
+         value={formValues.password}
+         onChange={handleChange}
+         className="form-control"
+       />
+     </div>
+     <div className="mb-2">
+       <label className="form-label">Confirm Password</label>
+       <input
+         id="confirmPassword"
+         type="password"
+         name="confirmPassword"
+         value={formValues.confirmPassword}
+         onChange={handleChange}
+         className="form-control"
+       />
+     </div>
+     <button type="submit" className="btn btn-primary">Update</button>
+   </form>
+ </div>
             ) : (
-                <div className="container mt-4 pt-5">
-                    <table className="table table-striped table-bordered mt-5">
-                        <thead>
+                <div className="w-100  d-flex justify-content-center mt-5 pt-5">
+                    <table className="table table-striped table-bordered w-50 ms-5 mt-5">
+                        <thead className='text-center'>
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
@@ -166,20 +183,20 @@ export const UserTable = () => {
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className='text-center'>
                             <tr>
                                 <td>{user?.userName}</td>
                                 <td>{user?.email}</td>
                                 <td>{user?.mobileNo}</td>
                                 <td>
                                     <button 
-                                        className="btn btn-primary mr-2" 
+                                        className="btn btn-primary  " 
                                         onClick={handleEdit}
                                     >
                                         Edit
                                     </button>
                                     <button 
-                                        className="btn btn-danger" 
+                                        className="btn btn-danger m-2" 
                                         onClick={handleDelete}
                                     >
                                         Delete

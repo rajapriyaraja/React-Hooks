@@ -5,6 +5,7 @@ import { userRegisterMethod } from '../Api/RegisterApi';
 import { useNavigate } from 'react-router-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './Register.css';
+import { Button } from '@mui/material';
 
 export const Register = () => {
     const validationSchema = Yup.object({
@@ -35,15 +36,14 @@ export const Register = () => {
     });
 
     return (
-        <div className="d-flex justify-content-center mt-5">
-            <div className="register-form p-4  mt-4 col-lg-4 shadow-lg border">
-                <h2 className="text-center ">Register Form</h2>
+        <div className="container d-flex justify-content-center mt-5 ">
+            <div className="shadow-lg p-5 w-100 ">
+                <h2 className="text-center">Register Form</h2>
                 <form onSubmit={formik.handleSubmit}>
-                    <div className="mt-4">
-                       
+                    <div className="form-group mt-4">
                         <input
                             type="text"
-                            className="form-control  rounded-9"
+                            className="form-control rounded-9"
                             placeholder="Name"
                             name="userName"
                             autoComplete="name"
@@ -56,8 +56,7 @@ export const Register = () => {
                             <div className="text-danger">{formik.errors.userName}</div>
                         ) : null}
                     </div>
-                    <div className="mt-3">
-                      
+                    <div className="form-group mt-3">
                         <input
                             type="email"
                             className="form-control rounded-9"
@@ -71,8 +70,7 @@ export const Register = () => {
                             <div className="text-danger">{formik.errors.email}</div>
                         ) : null}
                     </div>
-                    <div className="mt-3">
-                      
+                    <div className="form-group mt-3">
                         <input
                             type="password"
                             className="form-control rounded-9"
@@ -86,8 +84,7 @@ export const Register = () => {
                             <div className="text-danger">{formik.errors.password}</div>
                         ) : null}
                     </div>
-                    <div className="mt-3">
-                      
+                    <div className="form-group mt-3">
                         <input
                             type="password"
                             className="form-control rounded-9"
@@ -101,8 +98,7 @@ export const Register = () => {
                             <div className="text-danger">{formik.errors.confirmPassword}</div>
                         ) : null}
                     </div>
-                    <div className="mt-3">
-                        
+                    <div className="form-group mt-3">
                         <input
                             type="text"
                             className="form-control rounded-9"
@@ -116,8 +112,7 @@ export const Register = () => {
                             <div className="text-danger">{formik.errors.mobileNo}</div>
                         ) : null}
                     </div>
-                    <div className="mt-3">
-                        
+                    <div className="form-group mt-3">
                         <select
                             className="form-select rounded-9"
                             name="userRole"
@@ -134,10 +129,15 @@ export const Register = () => {
                         ) : null}
                     </div>
                     <div className="d-grid mt-3">
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        {/* <Button type="submit" className="btn btn-dark">Submit</Button> */}
+                        <Button variant="contained" color="primary">
+         
+  Submit
+</Button>
+
                     </div>
-                    <div className='mt-3 text-center'>
-                        <p>If you have an account please <a href='http://localhost:3000/Login'>Log In</a></p>
+                    <div className="mt-2 text-center">
+                        <p>If you have an account please <a href="/Login">Log In</a></p>
                     </div>
                 </form>
             </div>

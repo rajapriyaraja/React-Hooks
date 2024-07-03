@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { logInApiMethod } from '../Api/LoginApi';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import { useNavigate } from 'react-router-dom';
+import { IoPersonCircleSharp } from "react-icons/io5";
+import './Login.css';  // Import the CSS file
 
 export const Login = () => {
   const [userLog, setUserLog] = useState({
@@ -47,12 +49,15 @@ export const Login = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container mt-5">
       <div className="row justify-content-center">
-        <div className="col-12 col-md-8 col-lg-6 col-xl-4">
-          <div className="shadow-lg mt-5">
-            <form onSubmit={handleSubmit} className="p-4 rounded">
-              <h2 className="mb-4 text-center">Login</h2>
+        <div className=" ">
+          {/* <div className="position-absolute w-25  text-center mt-4">
+            <IoPersonCircleSharp size={'6em'} />
+          </div> */}
+          <div className="shadow-lg  p-4 rounded mt-3">
+            <form onSubmit={handleSubmit}>
+              <h2 className="text-center mt-5">Login</h2>
               <div className="form-group">
                 <label>Email</label>
                 <input
@@ -77,9 +82,9 @@ export const Login = () => {
                   required
                 />
               </div>
-              <button type="submit" className="btn btn-primary mt-4 w-100">Login</button>
+              <button type="submit" className="btn btn-dark mt-4 w-100">Login</button>
               <span className="d-flex justify-content-center mt-2">(or)</span>
-              <div className="mt-2">
+              <div className="mt-2 text-center">
                 <p>If you don't have an account, please <a href='http://localhost:3000/'>Sign Up...</a></p>
               </div>
             </form>

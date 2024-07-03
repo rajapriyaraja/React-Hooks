@@ -43,10 +43,10 @@ export const AdminTable = () => {
   }
 
   return (
-    <div className="container  mt-5">
+    <div className="container w-50 text-center p-5 mt-5">
       <h1 className="mb-5 text-secondary text-center">Admin Table</h1>
       <div className="table-responsive">
-        <table className="table table-striped table-bordered">
+        <table className="table table-striped table-bordered ">
           <thead className="thead-dark">
             <tr>
               <th>Name</th>

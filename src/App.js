@@ -49,6 +49,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import  {AdminTable} from './Authentication/Table/AdminTable';
 import { UserTable } from './Authentication/Table/UserTable';
 
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+
 import "./App.css"
 function App() {
   return (

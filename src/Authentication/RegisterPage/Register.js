@@ -5,7 +5,8 @@ import { userRegisterMethod } from '../Api/RegisterApi';
 import { useNavigate } from 'react-router-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './Register.css';
-import { Button } from '@mui/material';
+import Swal from 'sweetalert2';
+
 
 export const Register = () => {
     const validationSchema = Yup.object({
@@ -31,13 +32,19 @@ export const Register = () => {
         onSubmit: async (values) => {
             const response = await userRegisterMethod(values);
             console.log(response);
+            Swal.fire({
+                title: 'Success!',
+                text: ' Successfully Created!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+              })
             nav('/Login');
         }
     });
 
     return (
-        <div className="container d-flex justify-content-center mt-5 ">
-            <div className="shadow-lg p-5 w-100 ">
+        <div className="container d-flex justify-content-center mt-5 rounded ">
+            <div className=" p-5 w-100 ">
                 <h2 className="text-center">Register Form</h2>
                 <form onSubmit={formik.handleSubmit}>
                     <div className="form-group mt-4">
@@ -129,11 +136,11 @@ export const Register = () => {
                         ) : null}
                     </div>
                     <div className="d-grid mt-3">
-                        {/* <Button type="submit" className="btn btn-dark">Submit</Button> */}
-                        <Button variant="contained" color="primary">
+                        <button type="submit" className="btn btn-dark">Submit</button>
+                        {/* <Button variant="contained" color="primary">
          
   Submit
-</Button>
+</Button> */}
 
                     </div>
                     <div className="mt-2 text-center">

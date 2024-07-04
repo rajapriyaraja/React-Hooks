@@ -49,15 +49,15 @@ export const Login = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
+    <div className="container mt-5 rounded">
+      <div className="row  mt-5 justify-content-center ">
         <div className=" ">
           {/* <div className="position-absolute w-25  text-center mt-4">
             <IoPersonCircleSharp size={'6em'} />
           </div> */}
-          <div className="shadow-lg  p-4 rounded mt-3">
+          <div className=" p-4 rounded mt-3">
             <form onSubmit={handleSubmit}>
-              <h2 className="text-center mt-5">Login</h2>
+              <h2 className="text-center ">Login</h2>
               <div className="form-group">
                 <label>Email</label>
                 <input

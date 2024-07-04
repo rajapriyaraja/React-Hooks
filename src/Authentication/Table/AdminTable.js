@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+// import { Button } from 'primereact/button';
+// import { Tooltip } from 'primereact/tooltip';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
 
 export const AdminTable = () => {
   const [users, setUsers] = useState([]);
@@ -9,7 +15,6 @@ export const AdminTable = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       const token = localStorage.getItem('token');
-
       if (!token) {
         setError('Token not found in local storage');
         return;
@@ -43,30 +48,18 @@ export const AdminTable = () => {
   }
 
   return (
-    <div className="container w-50 text-center p-5 mt-5">
-      <h1 className="mb-5 text-secondary text-center">Admin Table</h1>
-      <div className="table-responsive">
-        <table className="table table-striped table-bordered ">
-          <thead className="thead-dark">
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Mobile No</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users && users.map(user => (
-              <tr key={user.userId}>
-                <td>{user.userName}</td>
-                <td>{user.email}</td>
-                <td>{user.mobileNo}</td>
-                <td>{user.status}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <>
+      <h1 className="mb-5 mt-5 text-secondary text-center">Admin Table</h1>
+      <div className="container mt-5">
+        <div className="card">
+          <DataTable value={users} paginator rows={10} rowsPerPageOptions={[5, 10, 20]} className="p-datatable-striped">
+            <Column field="userName" header="Name" sortable />
+            <Column field="email" header="Email" sortable />
+            <Column field="mobileNo" header="Mobile No" sortable />
+            <Column field="status" header="Status" sortable />
+          </DataTable>
+        </div>
       </div>
-    </div>
+    </>
   );
 };

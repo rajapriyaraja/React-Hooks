@@ -3,7 +3,8 @@ import { logInApiMethod } from '../Api/LoginApi';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import { useNavigate } from 'react-router-dom';
 import { IoPersonCircleSharp } from "react-icons/io5";
-import './Login.css';  // Import the CSS file
+// import './Login.css';  // Import the CSS file
+import Spinner from 'react-bootstrap/Spinner';
 
 export const Login = () => {
   const [userLog, setUserLog] = useState({
@@ -23,13 +24,14 @@ export const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
     try {
       const response = await logInApiMethod(userLog);
 
       if (response && response.data && response.data.data) {
         localStorage.setItem('token', response.data.data.body.jwt);
         localStorage.setItem('email', response.data.data.body.userEmail); 
-
+       
         if (response.data.data.body.role === "USER") {
           nav("/usertable");
         } else if (response.data.data.body.role === "ADMIN") {
@@ -50,12 +52,13 @@ export const Login = () => {
 
   return (
     <div className="container mt-5 rounded">
+ 
       <div className="row  mt-5 justify-content-center ">
         <div className=" ">
           {/* <div className="position-absolute w-25  text-center mt-4">
             <IoPersonCircleSharp size={'6em'} />
           </div> */}
-          <div className=" p-4 rounded mt-3">
+          {/* <div className=" p-4 rounded mt-3"> */}
             <form onSubmit={handleSubmit}>
               <h2 className="text-center ">Login</h2>
               <div className="form-group">
@@ -92,6 +95,6 @@ export const Login = () => {
           </div>
         </div>
       </div>
-    </div>
+    
   );
 };
